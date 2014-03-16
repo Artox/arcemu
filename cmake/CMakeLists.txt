@@ -32,6 +32,13 @@ ENDIF( WIN32 )
 
 SET( GLOBAL_DEFINES "-DHAVE_CONFIG_H")
 
+# Visual Studio automatically defines _DEBUG on debug profile
+# on the other platforms we have to add it manually
+# TODO: RelWithDebInfo
+IF( NOT WIN32 )
+	SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
+ENDIF( NOT WIN32 )
+
 IF( CMAKE_GENERATOR MATCHES Visual*)
 	SET( GLOBAL_DEFINES ${GLOBAL_DEFINES} "/MP")
 ENDIF()
