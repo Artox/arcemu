@@ -1,0 +1,17 @@
+branches:
+  only:
+  - arm
+language: cpp
+addons:
+  apt:
+    packages:
+    - cmake
+    - zlib1g-dev
+    - libssl-dev
+    - libpcre3-dev
+    - libmysqlclient-dev
+script:
+- mkdir build; cd build
+- cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=../out
+- make -j2
+- make install
